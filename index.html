@@ -1,10 +1,4 @@
-<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
-{
-  "name": "Linkedin Engage",
-  "schemaVersion": 1,
-  "description": "Daily LinkedIn engagement board — 5 curated posts from AI/research/design thought leaders with summaries and ready-to-paste comments. Updated Tue & Wed at 8am, Thu at 6:45pm."
-}
-</script>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,339 +6,87 @@
 <title>LinkedIn Engage — Akshitaa</title>
 <style>
   :root { color-scheme: light; }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #f4f6f8;
-    color: #1a1a2e;
-    padding: 16px;
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  header {
-    padding: 20px 0 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  header h1 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #0a66c2;
-    letter-spacing: -0.3px;
-  }
-
-  header .date-badge {
-    font-size: 12px;
-    color: #666;
-    background: #e8edf2;
-    padding: 4px 10px;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
-
-  .subtitle {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 20px;
-    margin-top: 4px;
-  }
-
-  .card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 18px;
-    margin-bottom: 14px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-    border-left: 4px solid #0a66c2;
-  }
-
-  .card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    gap: 10px;
-  }
-
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f6f8; color: #1a1a2e; padding: 16px; max-width: 680px; margin: 0 auto; }
+  header { padding: 20px 0 8px; display: flex; justify-content: space-between; align-items: flex-start; }
+  header h1 { font-size: 20px; font-weight: 700; color: #0a66c2; letter-spacing: -0.3px; }
+  .date-badge { font-size: 12px; color: #666; background: #e8edf2; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+  .subtitle { font-size: 13px; color: #666; margin-bottom: 20px; margin-top: 4px; }
+  .card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); border-left: 4px solid #0a66c2; }
+  .card-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 10px; }
   .author-block { flex: 1; }
-
-  .author-name {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1a1a2e;
-    line-height: 1.2;
-  }
-
-  .author-role {
-    font-size: 12px;
-    color: #666;
-    margin-top: 2px;
-    line-height: 1.3;
-  }
-
-  .stats {
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-    align-items: flex-start;
-    margin-top: 2px;
-  }
-
-  .stat {
-    font-size: 11px;
-    color: #888;
-    background: #f0f4f8;
-    padding: 3px 7px;
-    border-radius: 10px;
-    white-space: nowrap;
-  }
-
+  .author-name { font-size: 15px; font-weight: 700; color: #1a1a2e; line-height: 1.2; }
+  .author-role { font-size: 12px; color: #666; margin-top: 2px; line-height: 1.3; }
+  .stats { display: flex; gap: 8px; flex-shrink: 0; align-items: flex-start; margin-top: 2px; }
+  .stat { font-size: 11px; color: #888; background: #f0f4f8; padding: 3px 7px; border-radius: 10px; white-space: nowrap; }
   .stat.comments { background: #e8f4e8; color: #2e7d32; font-weight: 600; }
-
-  .section-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.7px;
-    color: #999;
-    margin-bottom: 5px;
-    margin-top: 12px;
-  }
-
-  .post-summary {
-    font-size: 14px;
-    color: #333;
-    line-height: 1.5;
-  }
-
-  .comment-box {
-    background: #f0f7ff;
-    border: 1px solid #c8e0f7;
-    border-radius: 10px;
-    padding: 12px 14px;
-    margin-top: 4px;
-  }
-
-  .comment-text {
-    font-size: 13.5px;
-    color: #1a3c5e;
-    line-height: 1.55;
-    font-style: italic;
-  }
-
-  .copy-btn {
-    margin-top: 8px;
-    background: none;
-    border: 1px solid #0a66c2;
-    color: #0a66c2;
-    font-size: 12px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.15s;
-  }
-
-  .copy-btn:active { background: #e8f0fe; }
+  .section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: #999; margin-bottom: 5px; margin-top: 12px; }
+  .post-summary { font-size: 14px; color: #333; line-height: 1.5; }
+  .comment-box { background: #f0f7ff; border: 1px solid #c8e0f7; border-radius: 10px; padding: 12px 14px; margin-top: 4px; }
+  .comment-text { font-size: 13.5px; color: #1a3c5e; line-height: 1.55; font-style: italic; }
+  .copy-btn { margin-top: 8px; background: none; border: 1px solid #0a66c2; color: #0a66c2; font-size: 12px; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-weight: 500; }
   .copy-btn.copied { background: #e8f0fe; color: #0a47a0; }
-
-  .open-btn {
-    display: block;
-    text-align: center;
-    margin-top: 14px;
-    background: #0a66c2;
-    color: #fff;
-    text-decoration: none;
-    padding: 11px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.2px;
-  }
-
-  .open-btn:active { background: #084fa0; }
-
-  footer {
-    text-align: center;
-    font-size: 11px;
-    color: #aaa;
-    padding: 16px 0 24px;
-  }
+  .open-btn { display: block; text-align: center; margin-top: 14px; background: #0a66c2; color: #fff; text-decoration: none; padding: 11px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+  footer { text-align: center; font-size: 11px; color: #aaa; padding: 16px 0 24px; }
 </style>
 </head>
 <body>
-
 <header>
-  <div>
-    <h1>LinkedIn Engage</h1>
-    <p class="subtitle">5 posts to comment on today</p>
-  </div>
-  <span class="date-badge" id="run-date">Thu 18 Jun 2026</span>
+  <div><h1>LinkedIn Engage</h1><p class="subtitle">5 posts to comment on today</p></div>
+  <span class="date-badge" id="run-date"></span>
 </header>
-
 <div id="cards-container">
-
-  <!-- CARD 1 -->
   <div class="card">
-    <div class="card-meta">
-      <div class="author-block">
-        <div class="author-name">Zander Whitehurst</div>
-        <div class="author-role">Founder &amp; CEO, Memorisely · 366K followers</div>
-      </div>
-      <div class="stats">
-        <span class="stat">4.9K 👍</span>
-        <span class="stat comments">178 💬</span>
-      </div>
-    </div>
-
+    <div class="card-meta"><div class="author-block"><div class="author-name">Zander Whitehurst</div><div class="author-role">Founder &amp; CEO, Memorisely · 366K followers</div></div><div class="stats"><span class="stat">4.9K 👍</span><span class="stat comments">176 💬</span></div></div>
     <div class="section-label">What it's about</div>
-    <p class="post-summary">Zander argues AI generates pixel-perfect screens but cannot replace the designer's actual job — translating ambiguity into clarity and figuring out which problem is worth solving in the first place.</p>
-
+    <p class="post-summary">Zander argues AI generates screens but can't replace the designer's core skill — translating ambiguity into clarity and solving the right problem.</p>
     <div class="section-label">Your comment</div>
-    <div class="comment-box">
-      <p class="comment-text" id="c1">The bottleneck was never "can we make it look good?" — it was always "are we solving the right thing?" That part hasn't changed, and probably won't.</p>
-      <button class="copy-btn" onclick="copyComment('c1', this)">Copy comment</button>
-    </div>
-
+    <div class="comment-box"><p class="comment-text" id="c1">The bottleneck was never 'can we make it look good?' — it was always 'are we solving the right thing?' That part hasn't changed.</p><button class="copy-btn" onclick="copyComment('c1',this)">Copy comment</button></div>
     <a class="open-btn" href="https://www.linkedin.com/posts/zanderwhitehurst_ux-ui-design-activity-7472647371852648448-6o64" target="_blank">Open Post →</a>
   </div>
-
-  <!-- CARD 2 -->
   <div class="card">
-    <div class="card-meta">
-      <div class="author-block">
-        <div class="author-name">Jen Cardello</div>
-        <div class="author-role">MVP, Experience Design Research · Capital One · 8K followers</div>
-      </div>
-      <div class="stats">
-        <span class="stat">506 👍</span>
-        <span class="stat comments">17 💬</span>
-      </div>
-    </div>
-
+    <div class="card-meta"><div class="author-block"><div class="author-name">Jen Cardello</div><div class="author-role">MVP, Experience Design Research · Capital One · 8K followers</div></div><div class="stats"><span class="stat">506 👍</span><span class="stat comments">17 💬</span></div></div>
     <div class="section-label">What it's about</div>
-    <p class="post-summary">Jen shares Capital One's shift toward a "user intelligence" model — repositioning the research team as a continuous capability that feeds the business, not a project function that delivers reports.</p>
-
+    <p class="post-summary">Jen announces Capital One's design research shift toward "user intelligence" — repositioning research as a continuous capability, not just a project deliverable.</p>
     <div class="section-label">Your comment</div>
-    <div class="comment-box">
-      <p class="comment-text" id="c2">The "user intelligence" framing does a lot of work — it positions research as an ongoing capability rather than a project deliverable. That distinction matters more than most orgs realize.</p>
-      <button class="copy-btn" onclick="copyComment('c2', this)">Copy comment</button>
-    </div>
-
+    <div class="comment-box"><p class="comment-text" id="c2">The 'user intelligence' framing does a lot of work — it positions research as an ongoing capability rather than a project deliverable. That distinction matters more than most orgs realize.</p><button class="copy-btn" onclick="copyComment('c2',this)">Copy comment</button></div>
     <a class="open-btn" href="https://www.linkedin.com/posts/jencardello_the-capital-one-experience-design-research-activity-7472690111072292864-nnQO" target="_blank">Open Post →</a>
   </div>
-
-  <!-- CARD 3 -->
   <div class="card">
-    <div class="card-meta">
-      <div class="author-block">
-        <div class="author-name">Kevin Newton</div>
-        <div class="author-role">Systems Leader &amp; Storyteller · 3.9K followers</div>
-      </div>
-      <div class="stats">
-        <span class="stat">127 👍</span>
-        <span class="stat comments">10 💬</span>
-      </div>
-    </div>
-
+    <div class="card-meta"><div class="author-block"><div class="author-name">Mike Haley</div><div class="author-role">SVP Research · Autodesk · 1.7K followers</div></div><div class="stats"><span class="stat">74 👍</span><span class="stat comments">5 💬</span></div></div>
     <div class="section-label">What it's about</div>
-    <p class="post-summary">Kevin predicts AI will split UX research into three distinct roles: knowledge makers (who do research), system builders (who build the research infrastructure), and orchestrators (who coordinate across both).</p>
-
+    <p class="post-summary">Mike shares Autodesk's NeuralCAD — extending AI's text/image breakthroughs into 3D geometry and engineering design.</p>
     <div class="section-label">Your comment</div>
-    <div class="comment-box">
-      <p class="comment-text" id="c3">The orchestrator role is the one I'd watch most closely. If research splits into makers, builders, and orchestrators, who actually owns the judgment call about which questions are worth asking in the first place?</p>
-      <button class="copy-btn" onclick="copyComment('c3', this)">Copy comment</button>
-    </div>
-
-    <a class="open-btn" href="https://www.linkedin.com/posts/uxnewton_your-ux-research-will-be-split-into-three-activity-7473098301467275264-gxIj" target="_blank">Open Post →</a>
+    <div class="comment-box"><p class="comment-text" id="c3">The transfer from 2D to 3D is the hard part — images forgive near-misses, but engineering geometry doesn't. Curious what the failure modes look like when the model doesn't carry physical constraints.</p><button class="copy-btn" onclick="copyComment('c3',this)">Copy comment</button></div>
+    <a class="open-btn" href="https://www.linkedin.com/posts/mikehaley_ai-has-made-major-advances-in-text-images-activity-7472675899520233472-4ekg" target="_blank">Open Post →</a>
   </div>
-
-  <!-- CARD 4 -->
   <div class="card">
-    <div class="card-meta">
-      <div class="author-block">
-        <div class="author-name">Nicholas Thompson</div>
-        <div class="author-role">CEO, The Atlantic · 1.6M followers</div>
-      </div>
-      <div class="stats">
-        <span class="stat">89 👍</span>
-        <span class="stat comments">22 💬</span>
-      </div>
-    </div>
-
+    <div class="card-meta"><div class="author-block"><div class="author-name">Asif Razzaq</div><div class="author-role">Founder · Marktechpost (1M+ readers) · 35.7K followers</div></div><div class="stats"><span class="stat">32 👍</span><span class="stat comments">3 💬</span></div></div>
     <div class="section-label">What it's about</div>
-    <p class="post-summary">Nicholas draws a sharp distinction between two modes of AI creative work: refining existing ideas (where AI genuinely excels) versus originating something new (where humans still hold the edge). The question is which mode you're actually in.</p>
-
+    <p class="post-summary">Asif argues deep research AI tools optimize for speed — the right metric is reasoning depth and source quality, not how fast the answer arrives.</p>
     <div class="section-label">Your comment</div>
-    <div class="comment-box">
-      <p class="comment-text" id="c4">The refine-versus-originate frame is the sharpest version of this argument I've read. The trouble is most teams don't realize they're in refine mode until the product ships and nobody can explain why it feels derivative.</p>
-      <button class="copy-btn" onclick="copyComment('c4', this)">Copy comment</button>
-    </div>
-
-    <a class="open-btn" href="https://www.linkedin.com/posts/nicholasxthompson_this-is-a-great-distinction-between-the-kinds-activity-7472275483489964032-gT_z" target="_blank">Open Post →</a>
+    <div class="comment-box"><p class="comment-text" id="c4">Speed is the easiest metric to optimize for, which is exactly why it becomes the default. The harder question — what does 'good enough' look like for a given task — is still very human to define.</p><button class="copy-btn" onclick="copyComment('c4',this)">Copy comment</button></div>
+    <a class="open-btn" href="https://www.linkedin.com/posts/asifrazzaq_most-deep-research-tools-optimize-for-speed-activity-7472419332124332032-7Jav" target="_blank">Open Post →</a>
   </div>
-
-  <!-- CARD 5 -->
   <div class="card">
-    <div class="card-meta">
-      <div class="author-block">
-        <div class="author-name">Erik Taylor</div>
-        <div class="author-role">Senior Product Designer, AI-native UX · 910 followers</div>
-      </div>
-      <div class="stats">
-        <span class="stat">155 👍</span>
-        <span class="stat comments">26 💬</span>
-      </div>
-    </div>
-
+    <div class="card-meta"><div class="author-block"><div class="author-name">Robert Rogowski</div><div class="author-role">AI &amp; Leadership Strategist · 42K followers</div></div><div class="stats"><span class="stat">20 👍</span><span class="stat comments">4 💬</span></div></div>
     <div class="section-label">What it's about</div>
-    <p class="post-summary">Erik shares his honest experience designing with AI tools — the gap between what AI accelerates and where the real design judgment still lives. He notes that AI is good at execution but quietly stops pushing back once you commit to an idea.</p>
-
+    <p class="post-summary">Robert argues AI governance in research isn't about efficiency — it's about preserving methodological rigor and human judgment. Method creates credibility; judgment creates trust.</p>
     <div class="section-label">Your comment</div>
-    <div class="comment-box">
-      <p class="comment-text" id="c5">The moment you push your own idea hard, AI stops pushing back and starts agreeing. The real test is whether you remember to ask "does this actually make sense?" before shipping — because AI won't ask it for you.</p>
-      <button class="copy-btn" onclick="copyComment('c5', this)">Copy comment</button>
-    </div>
-
-    <a class="open-btn" href="https://www.linkedin.com/posts/activity-7472792589151174656-MGjc" target="_blank">Open Post →</a>
+    <div class="comment-box"><p class="comment-text" id="c5">The orgs that get this right won't be the ones with the highest AI adoption — they'll be the ones with clear accountability for where the model stops and the human starts. That line is harder to draw than most expect.</p><button class="copy-btn" onclick="copyComment('c5',this)">Copy comment</button></div>
+    <a class="open-btn" href="https://www.linkedin.com/posts/robrogowski_ai-researchmethods-aigovernance-activity-7473151245474504704-eDIN" target="_blank">Open Post →</a>
   </div>
-
 </div>
-
 <footer>Updated automatically · Tue &amp; Wed 8am · Thu 6:45pm</footer>
-
 <script>
-  // Set today's date
-  const d = new Date();
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  document.getElementById('run-date').textContent =
-    days[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
-
-  function copyComment(id, btn) {
-    const text = document.getElementById(id).textContent.trim();
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = 'Copied ✓';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = 'Copy comment';
-        btn.classList.remove('copied');
-      }, 2000);
-    }).catch(() => {
-      // Fallback: select text
-      const el = document.getElementById(id);
-      const range = document.createRange();
-      range.selectNodeContents(el);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
+  const d=new Date(),days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('run-date').textContent=days[d.getDay()]+' '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+  function copyComment(id,btn){
+    navigator.clipboard.writeText(document.getElementById(id).textContent).then(()=>{
+      btn.textContent='Copied ✓';btn.classList.add('copied');
+      setTimeout(()=>{btn.textContent='Copy comment';btn.classList.remove('copied');},2000);
     });
   }
 </script>
-
 </body>
 </html>
